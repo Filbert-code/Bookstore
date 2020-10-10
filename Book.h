@@ -24,11 +24,15 @@ class Book
             return output;
         }
         
-        // getters 
+        // getters and setters
         string getTitle() { return title; }
+        void setTitle(string nTitle) { title = nTitle; }
         string getAuthors() { return authors; } 
-        string GetPublisher() { return publisher; }
-        int GetIsbn() { return isbn; }
+        void setAuthors(string nAuthors) { authors = nAuthors; }
+        string getPublisher() { return publisher; }
+        void setPublisher(string nPublisher) { publisher = nPublisher; }
+        int getIsbn() { return isbn; }
+        void setIsbn(int nIsbn) { isbn = nIsbn; }
 };
 
 #endif

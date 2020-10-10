@@ -1,0 +1,19 @@
+C++: Programming Basics
+Nathan Clark
+154296
+CreateSpace
+
+Data Structures & Algorithm Analysis in C++
+Mark Weiss
+132847
+Pearson
+
+Introduction to Programming Using Python
+Daniel Liang
+147231
+Pearson
+
+Introduction to Algorithms
+Thomas H. Cormen , Charles E. Leiserson
+189352
+MIT

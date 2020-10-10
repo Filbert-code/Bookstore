@@ -1,16 +1,17 @@
 #include <iostream>
 #include "Book.h"
+#include "BookstoreManager.h"
 
 using namespace std;
 
 int main()
 {
+    BookstoreManager bsm;
 
-    Book arr[4];
 
     string title, authors, publisher;
     int isbn;
-    for(int i=0;i<4;i++)
+    for(int i=0;i<3;i++)
     {
         cout << "Enter book title: ";
         getline(cin, title);
@@ -22,13 +23,26 @@ int main()
         cout<<"Enter publisher: ";
         getline(cin, publisher);
         Book aBook(title, isbn, authors, publisher);
-        arr[i] = aBook;
-        //bookstoreManager.insert(aBook);
+        bsm.insert(aBook);
         cout<<endl;
     }
+    bsm.listSize();
 
+   /*
+    ifstream file("testdata.txt");
+
+    string title, authors, publisher;
+    string isbn;
+    string line;
     for(int i = 0; i < 4; ++i)
     {
-        cout << arr[i];
+        getline(file, title);
+        getline(file, authors);
+        getline(file, isbn);
+        getline(file, publisher);
+        int iIsbn = stoi(isbn);
+        Book aBook(title, iIsbn, authors, publisher);
+        //bookstoreManager.insert(aBook);
     }
+    */
 }
