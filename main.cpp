@@ -8,10 +8,10 @@ int main()
 {
     BookstoreManager bsm;
 
-
+    bsm.isFull();
     string title, authors, publisher;
     int isbn;
-    for(int i=0;i<3;i++)
+    for(int i=0;i<1;i++)
     {
         cout << "Enter book title: ";
         getline(cin, title);
@@ -26,7 +26,9 @@ int main()
         bsm.insert(aBook);
         cout<<endl;
     }
+    bsm.isFull();
     bsm.listSize();
+    bsm.print();
 
    /*
     ifstream file("testdata.txt");
