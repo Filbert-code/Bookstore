@@ -34,7 +34,7 @@ void BookstoreManager::listSize()
 
 void BookstoreManager::insert(Book &book)
 {
-    if(size >= capacity)
+    if(size + 1>= capacity)
     {
         capacity *= 2;
         Book *temp = new Book[capacity];
@@ -48,7 +48,23 @@ void BookstoreManager::insert(Book &book)
             books[i] = temp[i];
         delete[] temp; // delete temporary array
     }
-    books[size++] = book;
+    // find the index where the Book should be inserted
+    for(int i = 0; i < size; ++i)
+    {
+        if(book.getIsbn() < books[i].getIsbn())
+        {
+            for(int k = i; k < size; k++)
+            {
+                books[i + 1] = books[i];
+            }
+            books[i] = book;
+        }
+    }
+    if(size == 0)
+    {
+        books[0] = book;
+    }
+    size++;
 }
 
 void BookstoreManager::print()
@@ -56,3 +72,27 @@ void BookstoreManager::print()
     for(int i = 0; i < size; ++i)
         cout << books[i];
 }
+
+void BookstoreManager::remove(Book &book)
+{
+    for(int i = 0; i < size; ++i)
+    {
+        if(books[i].getIsbn() == book.getIsbn())
+        {
+            for(int k = size - 1; k > i; --k)
+            {
+                books[k - 1] = books[k];
+                --size;
+            }
+            break;
+        }
+        cout << "Not Found" << endl;
+    }
+}
+
+/*
+void BookstoreManager::removePublisher(string &pub)
+{
+    for
+}
+*/

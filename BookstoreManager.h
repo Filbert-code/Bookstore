@@ -19,7 +19,7 @@ class BookstoreManager
         void print();
         void insert(Book &book);
         void remove(Book &book);
-        void removePublisher(string pub);
+        void removePublisher(string &pub);
         void search(Book &book);
 };
 
