@@ -28,15 +28,16 @@ int main()
     bsm.listSize();
     bsm.print();
 
-/*
+
+
     string pub;
     cout << "Publisher to remove: ";
-    cin >> pub;
+    getline(cin, pub);
     bsm.removePublisher(pub);
 
     bsm.listSize();
     bsm.print();
-*/
+
 
 /*
     ifstream file("testdata.txt");

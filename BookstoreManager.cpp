@@ -32,6 +32,10 @@ void BookstoreManager::listSize()
     cout << capacity << endl;
 }
 
+/*
+    Inserts a Book object into the the BookstoreManager's Book array in 
+    sorted ascending order. 
+*/
 void BookstoreManager::insert(Book &book)
 {
     size++; // increment the Book array
@@ -49,6 +53,7 @@ void BookstoreManager::insert(Book &book)
             books[i] = temp[i];
         delete[] temp; // delete temporary array
     }
+
     int index = 0; // index that will determine where to insert the new Book 
     // comparing Book isbn fields until insertion location is found
     while(book.getIsbn() > books[index].getIsbn())
@@ -61,6 +66,7 @@ void BookstoreManager::insert(Book &book)
             return;
         }
     }
+    
     // shifting all elements once to the right of the found insertion point
     for(int i = size - 1; i >= index; --i)
     {
@@ -92,29 +98,43 @@ void BookstoreManager::remove(Book &book)
     }
 }
 
+/*
+    Deletes all instances of Book objects from the Book array that
+    have the same publisher as the given argument. 
+*/
 void BookstoreManager::removePublisher(string &pub)
 {
-    int numOfRemovals = 0;
+    int numOfRemovals = 0; // tracks total books to remove
+    // replaces every book that needs to be removed with a new Book with 'isbn' of -1
     for(int i = 0; i < size; ++i)
     {
         if(books[i].getPublisher() == pub)
         {
+            // later we can tell that this book should not be copied
+            // to the new array because of it's 'isbn' value
             books[i] = Book("title", -1, "authors", "publisher");
             numOfRemovals++;
         }
     }
 
+    // create a temporary array to store the new Book array 
     Book *temp = new Book[size - numOfRemovals];
-    int shiftCount = 0;
+    // makes sure to avoid copying over a Book with 'isbn' of -1
+    int shiftCount = 0; 
+    // fill the temp array
     for(int i = 0; i < size - numOfRemovals; ++i)
     {
-        if(books[i].getIsbn() == -1)
+        while(books[i + shiftCount].getIsbn() == -1)
             shiftCount++;
         temp[i] = books[i + shiftCount];
     }
-    delete[] books;
-    books = temp;
-    size -= numOfRemovals;
-    delete[] temp;
 
+    delete[] books; // delete current books array
+    size -= numOfRemovals; 
+    // refill the books array with the updated array values
+    for(int k = 0; k < size; ++k)
+    {
+        books[k] = temp[k];
+    }
+    delete[] temp; // get rid of the temporary array
 }
