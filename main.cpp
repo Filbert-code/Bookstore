@@ -10,7 +10,7 @@ int main()
 
     string title, authors, publisher;
     int isbn;
-    for(int i=0;i<2;i++)
+    for(int i=0;i<3;i++)
     {
         cout << "Enter book title: ";
         getline(cin, title);
@@ -28,29 +28,16 @@ int main()
     bsm.listSize();
     bsm.print();
 
-    Book b(2);
-    bsm.remove(b);
     cout << "===========\n";
 
-    bsm.listSize();
-    bsm.print();
+    cout << "Searching...\nISBN:";
+    int val;
+    cin >> val;
+    Book b(val);
+    bsm.search(b);
 
 
-/*
-    ifstream file("testdata.txt");
 
-    string title, authors, publisher;
-    string isbn;
-    string line;
-    for(int i = 0; i < 4; ++i)
-    {
-        getline(file, title);
-        getline(file, authors);
-        getline(file, isbn);
-        getline(file, publisher);
-        int iIsbn = stoi(isbn);
-        Book aBook(title, iIsbn, authors, publisher);
-        //bookstoreManager.insert(aBook);
-    }
-*/
+    //bsm.listSize();
+    //bsm.print();
 }

@@ -15,7 +15,8 @@ class Book
 
     public:
         Book() {}
-        Book(int isbn): isbn(isbn) { title = "title"; authors = "authors"; publisher = "pub";}
+        Book(int isbn): isbn(isbn) {}
+        Book(string title): title(title) { isbn = -1; }
         Book(string title, int isbn, string authors, string publisher):
         title(title), isbn(isbn), authors(authors), publisher(publisher) {}
         friend ostream &operator<<(ostream &output, Book &b)

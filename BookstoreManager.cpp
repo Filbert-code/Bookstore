@@ -149,7 +149,36 @@ void BookstoreManager::removePublisher(string &pub)
     delete[] temp; // get rid of the temporary array
 }
 
+/*
+    Using binary search to find the Book corresponding to the 'isbn'
+    number of the given Book argument.
+*/
 void BookstoreManager::search(Book &book)
 {
-
+    /* This will get the isbn of the Book with only the title is given
+    int isbn;
+    if(book.getIsbn() == -1)
+    {
+        string bookTitle = book.getTitle();
+        for(int i = 0; i < size; ++i)
+        {
+            if(books[i].getTitle() == bookTitle)
+                isbn = books[i].getIsbn();
+        }
+    }
+    */
+    int isbn = book.getIsbn();
+    int high = size - 1, low = 0, mid;
+    while(low < high)
+    {
+        mid = (high + low) / 2;
+        if(books[mid].getIsbn() < isbn)
+            low = mid + 1;
+        else 
+            high = mid;
+    }
+    if(low == high && books[low].getIsbn() == isbn)
+        cout << books[low];
+    else
+        cout << "Book not found.";
 }
