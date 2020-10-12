@@ -10,7 +10,7 @@ int main()
 
     string title, authors, publisher;
     int isbn;
-    for(int i=0;i<2;i++)
+    for(int i=0;i<4;i++)
     {
         cout << "Enter book title: ";
         getline(cin, title);
@@ -27,11 +27,18 @@ int main()
     }
     bsm.listSize();
     bsm.print();
-    Book aBook("ethet", 1234, "gerger", "ergerg");
-    bsm.print();
-    bsm.listSize();
 
-   /*
+/*
+    string pub;
+    cout << "Publisher to remove: ";
+    cin >> pub;
+    bsm.removePublisher(pub);
+
+    bsm.listSize();
+    bsm.print();
+*/
+
+/*
     ifstream file("testdata.txt");
 
     string title, authors, publisher;
@@ -47,5 +54,5 @@ int main()
         Book aBook(title, iIsbn, authors, publisher);
         //bookstoreManager.insert(aBook);
     }
-    */
+*/
 }

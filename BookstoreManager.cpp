@@ -34,7 +34,8 @@ void BookstoreManager::listSize()
 
 void BookstoreManager::insert(Book &book)
 {
-    if(size + 1>= capacity)
+    size++; // increment the Book array
+    if(size >= capacity)
     {
         capacity *= 2;
         Book *temp = new Book[capacity];
@@ -48,23 +49,24 @@ void BookstoreManager::insert(Book &book)
             books[i] = temp[i];
         delete[] temp; // delete temporary array
     }
-    // find the index where the Book should be inserted
-    for(int i = 0; i < size; ++i)
+    int index = 0; // index that will determine where to insert the new Book 
+    // comparing Book isbn fields until insertion location is found
+    while(book.getIsbn() > books[index].getIsbn())
     {
-        if(book.getIsbn() < books[i].getIsbn())
+        index++;
+        // adds the Book to the end of the array if found to be largest value
+        if(index > size - 1)
         {
-            for(int k = i; k < size; k++)
-            {
-                books[i + 1] = books[i];
-            }
-            books[i] = book;
+            books[size - 1] = book;
+            return;
         }
     }
-    if(size == 0)
+    // shifting all elements once to the right of the found insertion point
+    for(int i = size - 1; i >= index; --i)
     {
-        books[0] = book;
+        books[i + 1] = books[i];
     }
-    size++;
+    books[index] = book; // inserting the Book
 }
 
 void BookstoreManager::print()
@@ -90,9 +92,29 @@ void BookstoreManager::remove(Book &book)
     }
 }
 
-/*
 void BookstoreManager::removePublisher(string &pub)
 {
-    for
+    int numOfRemovals = 0;
+    for(int i = 0; i < size; ++i)
+    {
+        if(books[i].getPublisher() == pub)
+        {
+            books[i] = Book("title", -1, "authors", "publisher");
+            numOfRemovals++;
+        }
+    }
+
+    Book *temp = new Book[size - numOfRemovals];
+    int shiftCount = 0;
+    for(int i = 0; i < size - numOfRemovals; ++i)
+    {
+        if(books[i].getIsbn() == -1)
+            shiftCount++;
+        temp[i] = books[i + shiftCount];
+    }
+    delete[] books;
+    books = temp;
+    size -= numOfRemovals;
+    delete[] temp;
+
 }
-*/
