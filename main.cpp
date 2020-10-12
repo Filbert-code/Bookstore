@@ -10,7 +10,7 @@ int main()
 
     string title, authors, publisher;
     int isbn;
-    for(int i=0;i<4;i++)
+    for(int i=0;i<2;i++)
     {
         cout << "Enter book title: ";
         getline(cin, title);
@@ -28,12 +28,9 @@ int main()
     bsm.listSize();
     bsm.print();
 
-
-
-    string pub;
-    cout << "Publisher to remove: ";
-    getline(cin, pub);
-    bsm.removePublisher(pub);
+    Book b(2);
+    bsm.remove(b);
+    cout << "===========\n";
 
     bsm.listSize();
     bsm.print();

@@ -66,7 +66,7 @@ void BookstoreManager::insert(Book &book)
             return;
         }
     }
-    
+
     // shifting all elements once to the right of the found insertion point
     for(int i = size - 1; i >= index; --i)
     {
@@ -81,21 +81,31 @@ void BookstoreManager::print()
         cout << books[i];
 }
 
+/*
+    deletes the Book object with the same 'isbn' attribute as 
+    the given Book argument. The given Book argument is constructed
+    using it's 1-arg constructor.
+*/
 void BookstoreManager::remove(Book &book)
 {
     for(int i = 0; i < size; ++i)
     {
         if(books[i].getIsbn() == book.getIsbn())
         {
+            if(i == size - 1)
+            {
+                --size;
+                return;
+            }
             for(int k = size - 1; k > i; --k)
             {
                 books[k - 1] = books[k];
                 --size;
             }
-            break;
+            return;
         }
-        cout << "Not Found" << endl;
     }
+    cout << "Not Found" << endl;
 }
 
 /*
@@ -137,4 +147,9 @@ void BookstoreManager::removePublisher(string &pub)
         books[k] = temp[k];
     }
     delete[] temp; // get rid of the temporary array
+}
+
+void BookstoreManager::search(Book &book)
+{
+
 }
