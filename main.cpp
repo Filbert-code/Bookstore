@@ -6,11 +6,15 @@ using namespace std;
 
 int main()
 {
-    BookstoreManager bsm;
+    BookstoreManager bookstoreManager;
 
+    // prints true if the bookstore is empty
+    bookstoreManager.isEmpty();
+
+    // insert 4 books
     string title, authors, publisher;
     int isbn;
-    for(int i=0;i<3;i++)
+    for(int i=0;i<4;i++)
     {
         cout << "Enter book title: ";
         getline(cin, title);
@@ -22,22 +26,42 @@ int main()
         cout<<"Enter publisher: ";
         getline(cin, publisher);
         Book aBook(title, isbn, authors, publisher);
-        bsm.insert(aBook);
+        bookstoreManager.insert(aBook);
         cout<<endl;
     }
-    bsm.listSize();
-    bsm.print();
+/*
+    // print bookstore
+    bookstoreManager.print();
 
-    cout << "===========\n";
+    // search for books
+    cout << "Searching..." << endl;
+    cout << "ISBN: ";
+    cin>>isbn;
+    cin.ignore(256, '\n');
+    Book b2(isbn);
+    bookstoreManager.search(b2);
 
-    cout << "Searching...\nISBN:";
-    int val;
-    cin >> val;
-    Book b(val);
-    bsm.search(b);
+    // remove a book
+    cout << "Removing..." << endl;
+    cout << "ISBN: ";
+    cin >> isbn;
+    cin.ignore(256, '\n');
+    Book b1(isbn);
+    bookstoreManager.remove(b1);
 
+    // print bookstore
+    bookstoreManager.print();
+*/
+    // remove books from a particular publisher
+    cout << "Removing publisher" << endl;
+    cout << "Publisher: ";
+    string pub;
+    getline(cin, pub);
+    bookstoreManager.removePublisher(pub);
 
+    // print bookstore
+    bookstoreManager.print();
 
-    //bsm.listSize();
-    //bsm.print();
+    // prints the number of books
+    bookstoreManager.listSize();
 }

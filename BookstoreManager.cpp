@@ -141,6 +141,7 @@ void BookstoreManager::removePublisher(string &pub)
 
     delete[] books; // delete current books array
     size -= numOfRemovals; 
+    books = new Book[size];
     // refill the books array with the updated array values
     for(int k = 0; k < size; ++k)
     {

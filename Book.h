@@ -16,7 +16,6 @@ class Book
     public:
         Book() {}
         Book(int isbn): isbn(isbn) {}
-        Book(string title): title(title) { isbn = -1; }
         Book(string title, int isbn, string authors, string publisher):
         title(title), isbn(isbn), authors(authors), publisher(publisher) {}
         friend ostream &operator<<(ostream &output, Book &b)
@@ -25,7 +24,6 @@ class Book
             output << b.authors + '\n' << b.publisher + '\n' << endl;
             return output;
         }
-        
         // getters and setters
         string getTitle() { return title; }
         void setTitle(string nTitle) { title = nTitle; }
