@@ -1,6 +1,11 @@
+// Author: Alex Filbert
+// Date: 10/10/2020
+// Course: CS 300B
+// Assignment: Homework 2
 #include "BookstoreManager.h"
 #include <iostream>
 
+// BookstoreManager default constructor
 BookstoreManager::BookstoreManager()
 {
     size = 0;
@@ -8,6 +13,7 @@ BookstoreManager::BookstoreManager()
     books = new Book[capacity];
 }
 
+// Returns and prints true if the books array is empty
 bool BookstoreManager::isEmpty()
 {
     if(size == 0)
@@ -17,6 +23,7 @@ bool BookstoreManager::isEmpty()
     return size == 0;
 }
 
+// Returns and prints true if the books array is full
 bool BookstoreManager::isFull()
 {
     if(size == capacity)
@@ -26,10 +33,10 @@ bool BookstoreManager::isFull()
     return size == capacity;
 }
 
+// prints the number of books in the Bookstore
 void BookstoreManager::listSize()
 {
     cout << "Number of Books in the Bookstore: "<< size << endl;
-    cout << capacity << endl;
 }
 
 /*
@@ -73,12 +80,16 @@ void BookstoreManager::insert(Book &book)
         books[i + 1] = books[i];
     }
     books[index] = book; // inserting the Book
+
 }
 
+/*
+    Prints the contents of the books array
+*/
 void BookstoreManager::print()
 {
     for(int i = 0; i < size; ++i)
-        cout << books[i];
+        cout << books[i]; // Book overloaded insertion operator used here
 }
 
 /*
@@ -88,15 +99,19 @@ void BookstoreManager::print()
 */
 void BookstoreManager::remove(Book &book)
 {
+    // looping through the books array
     for(int i = 0; i < size; ++i)
     {
+        // true if Book argument's isbn matches the array element's
         if(books[i].getIsbn() == book.getIsbn())
         {
+            // removes the Book if it's the last element 
             if(i == size - 1)
             {
                 --size;
                 return;
             }
+            // shift the remaining array elements to the right
             for(int k = size - 1; k > i; --k)
             {
                 books[k - 1] = books[k];
@@ -156,28 +171,20 @@ void BookstoreManager::removePublisher(string &pub)
 */
 void BookstoreManager::search(Book &book)
 {
-    /* This will get the isbn of the Book with only the title is given
-    int isbn;
-    if(book.getIsbn() == -1)
-    {
-        string bookTitle = book.getTitle();
-        for(int i = 0; i < size; ++i)
-        {
-            if(books[i].getTitle() == bookTitle)
-                isbn = books[i].getIsbn();
-        }
-    }
-    */
     int isbn = book.getIsbn();
+    // variables that keep track of beginning, ending, and middle array indices
     int high = size - 1, low = 0, mid;
     while(low < high)
     {
+        // get index of Book in the middle of the array
         mid = (high + low) / 2;
+        // check if the Book isbn is less than the given argument
         if(books[mid].getIsbn() < isbn)
-            low = mid + 1;
+            low = mid + 1; // keep the top half of the array
         else 
-            high = mid;
+            high = mid; // keep the bottom half of the array
     }
+    // print out whether the book was found or not
     if(low == high && books[low].getIsbn() == isbn)
         cout << books[low];
     else

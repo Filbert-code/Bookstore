@@ -1,3 +1,7 @@
+// Author: Alex Filbert
+// Date: 10/10/2020
+// Course: CS 300B
+// Assignment: Homework 2
 #ifndef BOOK_H
 #define BOOK_H
 #include <string>
@@ -8,16 +12,18 @@ using namespace std;
 class Book
 {
     private:
+        // private member variables
         string title;
         string authors;
         string publisher;
         int isbn;
 
     public:
-        Book() {}
-        Book(int isbn): isbn(isbn) {}
-        Book(string title, int isbn, string authors, string publisher):
+        Book() {} // default constructor
+        Book(int isbn): isbn(isbn) {} // isbn overloaded constructor
+        Book(string title, int isbn, string authors, string publisher): // 4-arg constructor
         title(title), isbn(isbn), authors(authors), publisher(publisher) {}
+        // overloading the << operator to allow printing the private variables to console
         friend ostream &operator<<(ostream &output, Book &b)
         {
             output << b.title + '\n' << b.isbn << endl;
